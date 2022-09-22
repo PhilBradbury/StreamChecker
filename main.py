@@ -7,4 +7,4 @@ Created on Thu Sep 22 12:43:39 2022
 
 import streamlit as st
 
-st.titlt('Stream Check')
+st.title('Stream Check')
