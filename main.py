@@ -1,18 +1,20 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Sep 22 12:43:39 2022
+Created on Sat Sep 24 19:43:39 2022
 @author: Phil bradbury
 """
 
 import streamlit as st
-import pandas as pd
 import requests
 import json
 
+# Import CSS file to style output page
 with open("styles.css") as css:
     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html = True)
 
+# Start building the page output
 st.title('Stream Check')
+st.subheader('Select the subscription service(s) of interest to you, and then enter keyword(s) below to search for films streaming in the UK.')
 filmtitle = st.text_input("Enter a film title (or part of)")
 
 # Parameters
@@ -43,7 +45,7 @@ if filmtitle:
     result = json.loads(data.content)
     
     #st.write(result["result"])
-    st.markdown("<h4>UK results...</h4>", unsafe_allow_html=True)
+    st.markdown("<hr /><h4>UK results...</h4>", unsafe_allow_html=True)
     
     non_uk_data = ""
     not_on_selected_platforms_data = ""
@@ -136,13 +138,17 @@ if filmtitle:
                         </div>
                         """, unsafe_allow_html=True)
         
-    # Out of the loop over the data object  
-    st.markdown(f"""
-                <h4>Not on a chosen service...</h4>
-                {not_on_selected_platforms_data}
-                """, unsafe_allow_html=True)
+    # Out of the loop over the data object 
+    if not_on_selected_platforms_data:
+        st.markdown(f"""
+                    <hr />
+                    <h4>Not on a chosen service...</h4>
+                    {not_on_selected_platforms_data}
+                    """, unsafe_allow_html=True)
     
-    st.markdown(f"""
-                <h4>Non-UK results...</h4>
-                {non_uk_data}
-                """, unsafe_allow_html=True)
+    if non_uk_data:
+        st.markdown(f"""
+                    <hr />
+                    <h4>Non-UK results...</h4>
+                    {non_uk_data}
+                    """, unsafe_allow_html=True)
