@@ -1,0 +1,116 @@
+.btn {
+    color: #555;
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    background-color: #ddd;
+    margin-left: 5px;
+    font-weight: normal;
+}
+
+.pill {
+    padding: 1px 5px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    float: right;
+}
+
+
+.nf {   
+    color: #fff;
+    background-color: #D00000;
+    font-weight: bold;
+}
+
+.ap {
+    color: #fff;
+    background-color: #00A8E1;
+    font-weight: bold;
+}
+
+.dp {
+    color: #fff;
+    background-color: #010634;
+    font-weight: bold;
+}
+
+.card {
+    margin-bottom: 25px;
+    padding: 0px;
+    border: none;
+}
+
+.card-header {
+    display: block;
+    clear: both;
+    border: 1px solid #aaa;
+    border-bottom: 25px solid #aaa;
+    border-radius: 10px 10px 0px 0px;
+    padding: 10px;
+    background-color: #191919;
+    color: #fff;
+    font-weight: bold;
+    vertical-align: center;
+}
+
+.card-body {
+    display: flex;
+    padding: 0px;
+    border: 1px solid #aaa;
+    border-top: none;
+    vertical-align: top;
+    border-radius: 0px 0px 0px 50px;
+}
+
+.card-footer {
+    padding: 10px 0px;
+    background-color: #fff;
+    text-align: right;
+}
+
+.poster {
+    width: 200px;
+    border: 1px solid #191919;
+}
+
+.image {
+    padding: 20px;
+    padding-bottom: 30px;
+    background-color: #191919;
+    border-radius: 0px 0px 0px 50px;
+    flex: 1;
+}
+
+.film-details {
+    padding: 10px;
+    float: left;
+    border-left: 1px solid #191919;
+}
+
+.actor {
+    font-weight: normal;
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: #FBAA08;
+    color: #191919;
+    border-radius: 10px;
+    margin-bottom: 5px;
+}
+
+.nonukdata {
+    display: block;
+    clear: both;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #191919;
+    color: #fff;
+    font-weight: bold;
+    vertical-align: center;
+    margin-bottom: 10px;
+}
+
+hr {
+    margin: 20px 0px;
+}
