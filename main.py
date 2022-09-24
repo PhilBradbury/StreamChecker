@@ -32,6 +32,7 @@ def get_data(theurl, theheaders, thequerystring):
     return response
 
 with st.sidebar:
+    st.header("Choose your service(s)")
     show_netflix = st.checkbox("Netflix")
     show_amazon = st.checkbox("Amazon Prime")
     show_disney = st.checkbox("Disney+")
