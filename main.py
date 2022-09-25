@@ -50,7 +50,7 @@ show_service = {}
 with st.sidebar:
     st.header("Choose your service(s)")
     for service in services_of_interest:
-        show_service[service] = st.checkbox(f'{service}')
+        show_service[service] = st.checkbox(f'{services_of_interest[service]}')
 
 # The data to use
 if filmtitle:
