@@ -85,8 +85,9 @@ if filmtitle:
             services_data = ""
     
             for s in services:
-                services_data += build_service_indicator(s, services_of_interest[s], s, show_service[s])
-                if show_service[s]: 
+                service_name = services_of_interest.get(s, s) # Check if service is in those of interest. 
+                services_data += build_service_indicator(s, service_name, s, show_service.get(s, False))
+                if show_service.get(s, False): 
                     has_subscription = True
 
             # See if we have matched at least one service of interest
