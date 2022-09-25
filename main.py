@@ -1,8 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Sep 24 19:43:39 2022
-@author: Phil bradbury
-"""
+""" Created on Sat Sep 24 19:43:39 2022, by Phil bradbury """
 
 import streamlit as st
 import requests
@@ -11,6 +8,16 @@ import json
 # Import CSS file to style output page
 with open("styles.css") as css:
     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html = True)
+
+#Data dictionaries
+services_of_interest = {
+    "netflix": "Netflix",
+    "prime": "Amazon Prime",
+    "disney": "Disney+",
+    "apple": "Apple TV",
+    "now": "Now TV",
+    "iplayer": "BBC iPlayer"
+    }
 
 # Start building the page output
 st.title('Stream Check')
@@ -25,27 +32,31 @@ headers = {
 	"X-RapidAPI-Host": "streaming-availability.p.rapidapi.com"
 }
 
-# Function
+# Functions
 @st.cache
 def get_data(theurl, theheaders, thequerystring):
     response = requests.request("GET", theurl, headers=theheaders, params=thequerystring)
     return response
 
+def build_service_indicator(service_name, text_to_display, class_name, chosen):
+    service_class_name = ""
+    if chosen:
+        service_class_name = " " + class_name 
+
+    return "<span class='pill" + service_class_name + "'>" + text_to_display + "</span>"
+   
+# Sidebar - show all services for user to select from
+show_service = {}
 with st.sidebar:
     st.header("Choose your service(s)")
-    show_netflix = st.checkbox("Netflix")
-    show_amazon = st.checkbox("Amazon Prime")
-    show_disney = st.checkbox("Disney+")
-    show_apple = st.checkbox("Apple")
-    show_now = st.checkbox("Now TV")
-
+    for service in services_of_interest:
+        show_service[service] = st.checkbox(f'{service}')
 
 # The data to use
 if filmtitle:
     data = get_data(url, headers, querystring)
     result = json.loads(data.content)
     
-    #st.write(result["result"])
     st.markdown("<hr /><h4>UK results...</h4>", unsafe_allow_html=True)
     
     non_uk_data = ""
@@ -68,52 +79,17 @@ if filmtitle:
         canaccess = False  
         has_subscription = False
         
-        services_data = ""
-        netflix_class = ""
-        amazon_class = ""
-        disney_class = ""
-        apple_class = ""
-        now_class = ""
-        
-        
         if "gb" in obj["streamingInfo"]:
             canaccess = True
             services = obj["streamingInfo"]["gb"]
+            services_data = ""
     
             for s in services:
-                if s == "netflix":
-                    if show_netflix:
-                        has_subscription = True
-                        netflix_class = "nf"
-                    services_data += "<span class='pill " + netflix_class + "'>Netflix</span>"
-                    
-                elif s == "prime":
-                    if show_amazon:
-                        has_subscription = True
-                        amazon_class = "ap"
-                    services_data += "<span class='pill " + amazon_class + "'>Amazon Prime</span>"
-                    
-                elif s == "disney":
-                    if show_disney:
-                        has_subscription = True
-                        disney_class = "dp"
-                    services_data += "<span class='pill " + disney_class + "'>Disney+</span>"
-                    
-                elif s == "apple":
-                    if show_apple:
-                        has_subscription = True
-                        apple_class = "app"
-                    services_data += "<span class='pill " + apple_class + "'>Apple</span>"
-                
-                elif s == "now":
-                    if show_now:
-                        has_subscription = True
-                        now_class = "now"
-                    services_data += "<span class='pill " + now_class + "'>Now TV</span>"
+                services_data += build_service_indicator(s, services_of_interest[s], s, show_service[s])
+                if show_service[s]: 
+                    has_subscription = True
 
-                else:
-                    services_data += "<span class='pill'>" + s + "</span>"
-            
+            # See if we have matched at least one service of interest
             if not has_subscription:
                 not_on_selected_platforms_data += "<div class='nonukdata'>" + title + services_data + "</div>"
 
