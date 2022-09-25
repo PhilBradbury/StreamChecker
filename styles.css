@@ -1,3 +1,12 @@
+.main {
+    padding: 50px 10%;;
+}
+
+.block-container {
+    max-width: unset;
+    padding: unset;
+}
+
 .btn {
     color: #555;
     padding: 5px 10px;
@@ -52,6 +61,11 @@
     color: #fff;
     background-color: #016E78;
     font-weight: bold;
+}
+
+.iplayer {
+    color: #FF4A9C;
+    background-color: #000;
 }
 
 .card {
