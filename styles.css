@@ -147,3 +147,7 @@
 hr {
     margin: 20px 0px;
 }
+
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
