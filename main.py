@@ -5,6 +5,9 @@ import streamlit as st
 import requests
 import json
 
+# Add Bootstrap
+st.markdown('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">', unsafe_allow_html=True)
+
 # Import CSS file to style output page
 with open("styles.css") as css:
     st.markdown(f'<style>{css.read()}</style>', unsafe_allow_html = True)
@@ -43,7 +46,7 @@ def build_service_indicator(service_name, text_to_display, class_name, chosen):
     if chosen:
         service_class_name = " " + class_name 
 
-    return "<span class='pill" + service_class_name + "'>" + text_to_display + "</span>"
+    return "<span class='btn btn-sm btn-secondary" + service_class_name + "'>" + text_to_display + "</span>"
    
 # Sidebar - show all services for user to select from
 show_service = {}
@@ -57,7 +60,7 @@ if filmtitle:
     data = get_data(url, headers, querystring)
     result = json.loads(data.content)
     
-    st.markdown("<hr /><h4>UK results...</h4>", unsafe_allow_html=True)
+    st.markdown("<hr /><h3>UK results...</h3>", unsafe_allow_html=True)
     
     non_uk_data = ""
     not_on_selected_platforms_data = ""
@@ -69,7 +72,6 @@ if filmtitle:
         
         actor_output = "&nbsp;"
         if obj["cast"]:
-            actor_output += "<hr /><h6 style='padding-left: 5px;'>Cast<h6>"
             for actor in obj["cast"]:
                 actor_output += "<div class='actor'>" + actor + "</div>"
         
@@ -92,22 +94,29 @@ if filmtitle:
 
             # See if we have matched at least one service of interest
             if not has_subscription:
-                not_on_selected_platforms_data += "<div class='nonukdata'>" + title + services_data + "</div>"
+                not_on_selected_platforms_data += "<div class='card-header'><h4>" + title + "</h4><span>" + services_data + "</span></div>"
 
         else:
-            non_uk_data += "<div class='nonukdata'>{0}<span class='pill year-pill'>{1}</span></div>".format(obj["title"], obj["year"])
+            non_uk_data += "<div class='card-header'><h4>{0}</h4><span class='btn btn-sm btn-primary'>{1}</span></div>".format(obj["title"], obj["year"])
 
         if canaccess & has_subscription:
             st.markdown(f"""
                         <div class="card">
-                            <div class="card-header">{title} <span class="pill year-pill">{year}</span></div>
+                            <div class="card-header">
+                                <h4>{title}</h4> 
+                                <span class="badge badge-primary">{year}</span>
+                            </div>
                             <div class="card-body">
-                                <div class="image">
+                                <div class="card-leftcol">
                                     <img class="poster" src={image_url}></td>
                                 </div>
-                                <div class="film-details">
-                                    {synopsis}
-                                    {actor_output}
+                                <div class="card-rightcol">
+                                    <div class="synopsis">
+                                        {synopsis}
+                                    </div>
+                                    <div class="cast">
+                                        {actor_output}
+                                    </div>
                                 </div>                            
                             </div>
                             <div class="card-footer">
@@ -119,14 +128,14 @@ if filmtitle:
     # Out of the loop over the data object 
     if not_on_selected_platforms_data:
         st.markdown(f"""
-                    <hr />
-                    <h4>Not on a chosen service...</h4>
+                    ###
+                    <h3>Not on a chosen service...</h3>
                     {not_on_selected_platforms_data}
                     """, unsafe_allow_html=True)
     
     if non_uk_data:
         st.markdown(f"""
-                    <hr />
-                    <h4>Non-UK results...</h4>
+                    ###
+                    <h3>Non-UK streaming services...</h3>
                     {non_uk_data}
                     """, unsafe_allow_html=True)

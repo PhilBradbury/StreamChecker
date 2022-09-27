@@ -1,5 +1,16 @@
+* {
+    margin: 0xp;
+    padding: 0px;
+}
+
 .main {
     padding: 50px 10%;;
+}
+
+h4{
+    margin: 0px;
+    padding: 0px;
+    font-weight: bold;
 }
 
 .block-container {
@@ -7,30 +18,21 @@
     padding: unset;
 }
 
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
+
 .btn {
-    color: #555;
-    padding: 5px 10px;
-    border: 1px solid #aaa;
-    border-radius: 5px;
-    background-color: #ddd;
     margin-left: 5px;
-    font-weight: normal;
-    float: right;
 }
 
-.pill {
-    border: 1px solid #aaa;
-    padding: 1px 10px;
-    margin-left: 5px;
-    background-color: #fff;
-    color: #000;
-    border-radius: 5px;
-    float: right;
+.badge {
+    padding: 10px;
 }
 
-.year-pill {
-    padding: 1px 5px;
-    border: none;
+.btn-secondary {
+    background-color: #ccc;
+    color: #666;
 }
 
 .netflix {   
@@ -68,38 +70,38 @@
     background-color: #000;
 }
 
+
 .card {
-    margin-bottom: 25px;
-    padding: 0px;
+    margin-bottom: 20px;
     border: none;
 }
 
-.card-header {
-    display: block;
-    clear: both;
-    border: 1px solid #aaa;
-    border-bottom: 25px solid #aaa;
-    border-radius: 10px 10px 0px 0px;
+.card-header{
+    display: flex;
+    align-items: center;
     padding: 10px;
-    background-color: #191919;
+    margin: 0px;
+    justify-content: space-between;
+    border: 1px solid #aaa;
+    background-color: navy;
+}
+
+.card-header h4 {
     color: #fff;
-    font-weight: bold;
-    vertical-align: center;
 }
 
 .card-body {
     display: flex;
-    padding: 0px;
     border: 1px solid #aaa;
-    border-top: none;
-    vertical-align: top;
-    border-radius: 0px 0px 0px 50px;
 }
 
-.card-footer {
-    padding: 10px 0px;
-    background-color: #fff;
-    text-align: right;
+.card-leftcol {
+    margin-right: 25px;
+    flex: auto;
+}
+
+.card-rightcol {
+    flex: auto;
 }
 
 .poster {
@@ -107,18 +109,12 @@
     border: 1px solid #191919;
 }
 
-.image {
-    padding: 20px;
-    padding-bottom: 30px;
-    background-color: #191919;
-    border-radius: 0px 0px 0px 50px;
-    flex: 1;
-}
-
-.film-details {
-    padding: 10px;
-    float: left;
-    border-left: 1px solid #191919;
+.card-footer {
+    display: flex;
+    justify-content: end;
+    padding: 10px 0px;
+    background-color: transparent;
+    border: none;
 }
 
 .actor {
@@ -131,23 +127,4 @@
     margin-bottom: 5px;
 }
 
-.nonukdata {
-    display: block;
-    clear: both;
-    border: 1px solid #aaa;
-    border-radius: 10px;
-    padding: 13px;
-    background-color: #191919;
-    color: #fff;
-    font-weight: bold;
-    vertical-align: center;
-    margin-bottom: 10px;
-}
 
-hr {
-    margin: 20px 0px;
-}
-
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
