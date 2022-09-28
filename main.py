@@ -97,7 +97,7 @@ if filmtitle:
                 not_on_selected_platforms_data += "<div class='card-header'><h4 title='" + synopsis + "'>" + title + "</h4><span>" + services_data + "</span></div>"
 
         else:
-            non_uk_data += "<div class='card-header'><h4 title='{3}'>{0}</h4><span class='btn btn-sm btn-primary'>{1}</span></div>".format(title, year, synopsis)
+            non_uk_data += "<div class='card-header'><h4 title='{3}'>{0}</h4><span class='btn btn-sm btn-primary'>{1}</span></div>".format(obj["title"], obj["year"], obj["overview"])
 
         if canaccess & has_subscription:
             st.markdown(f"""
