@@ -85,6 +85,7 @@ header {visibility: hidden;}
     justify-content: space-between;
     border: 1px solid #aaa;
     background-color: navy;
+    border-radius: 20px 20px;
 }
 
 .card-header h4 {
@@ -107,7 +108,7 @@ header {visibility: hidden;}
 
 .poster {
     width: 200px;
-    border: 1px solid #191919;
+    border: 2px solid #191919;
 }
 
 .card-footer {
@@ -122,7 +123,7 @@ header {visibility: hidden;}
     font-weight: normal;
     font-size: 16px;
     padding: 5px 10px;
-    background-color: #FBAA08;
+    background-color: #cfdaf8;
     color: #191919;
     border-radius: 10px;
     margin-bottom: 5px;

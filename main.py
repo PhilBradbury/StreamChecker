@@ -36,7 +36,7 @@ headers = {
 }
 
 # Functions
-@st.cache
+@st.cache_data
 def get_data(theurl, theheaders, thequerystring):
     response = requests.request("GET", theurl, headers=theheaders, params=thequerystring)
     return response
@@ -66,9 +66,10 @@ if filmtitle:
     not_on_selected_platforms_data = ""
 
     for obj in result["result"]:
+        year = "Unknown"
         title = obj["title"]
-        year = obj["year"]
-        synopsis = obj["overview"]
+        if("year" in obj) : year = obj["year"]
+        synopsis = obj["overview"] or "Synopsis unavailable"
         
         actor_output = "&nbsp;"
         if obj["cast"]:
@@ -97,7 +98,7 @@ if filmtitle:
                 not_on_selected_platforms_data += "<div class='card-header'><h4>" + title + "</h4><span>" + services_data + "</span></div>"
 
         else:
-            non_uk_data += "<div class='card-header'><h4>{0}</h4><span class='btn btn-sm btn-primary'>{1}</span></div>".format(obj["title"], obj["year"])
+            non_uk_data += "<div class='card-header'><h4>{0}</h4><span class='btn btn-sm btn-primary'>{1}</span></div>".format(title, year)
 
         if canaccess & has_subscription:
             st.markdown(f"""
@@ -133,9 +134,9 @@ if filmtitle:
                     {not_on_selected_platforms_data}
                     """, unsafe_allow_html=True)
     
-    if non_uk_data:
-        st.markdown(f"""
-                    ###
-                    <h3>Non-UK streaming services...</h3>
-                    {non_uk_data}
-                    """, unsafe_allow_html=True)
+    #if non_uk_data:
+    #    st.markdown(f"""
+    #                ###
+    #                <h3>Non-UK streaming services...</h3>
+    #                {non_uk_data}
+    #                """, unsafe_allow_html=True)
